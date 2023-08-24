@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista Capacitaciones</title>
+<link rel="stylesheet" th:href="@{/Style.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="body">
+  	<!-- inicio del navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+    	<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+		  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+		</svg>
+    Agencia de Seguros Aika</a>
+    <div>
+         <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Capacitaciones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- Contenido del dropdown -->
+          <form action="/crearcapacitaciones"><button type="submit" class="dropdown-item">Crear Capacitaciones</button></form>
+          <a class="dropdown-item" href="administrativo/listarCapacitaciones">Listar Capacitaciones</a>
+        </div>
+      </div>
+      
+       <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Visitas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2"> <!-- Contenido del dropdown -->
+          <form action="/crearVisitas"><button type="submit" class="dropdown-item">Agendar Visita</button></form>
+          <a class="dropdown-item" href="/listarVisitas">Lista Visitas</a>
+          <a class="dropdown-item" href="/listaVisitasPagadas">Lista Visitas Pagadas</a>
+        </div>
+      </div>
+      
+      <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pagos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink3"> <!-- Contenido del dropdown -->
+          <a class="dropdown-item" href="/historialPagos">Historial</a>
+        </div>
+      </div>
+      
+      <a class="navbar-link" href="/logout">Cerrar Session</a> 
+      <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Modos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- Contenido del dropdown -->
+          <a class="dropdown-item" href="#">Luz</a>
+          <a class="dropdown-item" href="#">Oscuro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+	<!-- fin del navbar -->
+	
+	<!-- Contenido -->
+    <div class="container"></br>
+        <h1>Listado de Visitas</h1><br>
+        <p>pagadas</p>
+        
+       
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha de Creación</th>
+                    <th>Fecha de Visita</th>
+                    <th>Nombre de Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="visita, rowStat : ${visitas}">
+                  
+                    <td th:text="${visita.id}"></td>
+                    <td th:text="${visita.fecha_creacion}"></td>
+                    <td th:text="${visita.fecha_visita}"></td>
+                    <td th:text="${visita.usuario.nombre}"></td>
+                  
+                </tr>
+            </tbody>
+        </table>
+ 
+    </div>
+    
+    <!-- footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>LyleanTozhaa&copy; 2023 - Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- fin del footer -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	    
+    <!-- script del modo oscuro -->
+    <script th:src="@{/modoOscuro.js}"></script>
+</body>
+</html>

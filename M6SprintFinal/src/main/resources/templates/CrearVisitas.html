@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crear Capacitaciones</title>
+<link rel="stylesheet" th:href="@{/Style.css}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="body">
+	<!-- inicio del navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+    	<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+		  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+		</svg>
+    Agencia de Seguros Aika</a>
+    <div>
+         <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Capacitaciones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- Contenido del dropdown -->
+          <form action="/crearcapacitaciones"><button type="submit" class="dropdown-item">Crear Capacitaciones</button></form>
+          <a class="dropdown-item" href="administrativo/listarCapacitaciones">Listar Capacitaciones</a>
+        </div>
+      </div>
+      
+       <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Visitas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2"> <!-- Contenido del dropdown -->
+          <form action="/crearVisitas"><button type="submit" class="dropdown-item">Agendar Visita</button></form>
+          <a class="dropdown-item" href="/listarVisitas">Lista Visitas</a>
+          <a class="dropdown-item" href="/listaVisitasPagadas">Lista Visitas Pagadas</a>
+        </div>
+      </div>
+      
+      <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pagos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink3"> <!-- Contenido del dropdown -->
+          <a class="dropdown-item" href="/historialPagos">Historial</a>
+        </div>
+      </div>
+      
+      <a class="navbar-link" href="/logout">Cerrar Session</a> 
+      <div class="dropdown"> <!-- Agregar el contenedor del dropdown -->
+        <a class="navbar-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Modos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- Contenido del dropdown -->
+          <a class="dropdown-item" href="#">Luz</a>
+          <a class="dropdown-item" href="#">Oscuro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+	<!-- fin del navbar -->
+ <!-- contenido -->
+        <div class="container">
+            <section class="form_wrap">
+                <section class="visitas_info">
+                    <section class="info_title">
+                        <span class="fa fa-user-circle"></span>
+                        <h2>AGENDAR<br>Visita</h2>
+                    </section>
+                </section>
+                
+           
+                 <form th:action="@{/guardarvisita}" method="post" class="form_contact" id="login-form">
+			        <label for="fecha_visita">Fecha de Visita:</label>
+			        <input type="date" id="fecha_visita" name="fecha_visita" required>
+			        <br>
+			       <label for="usuario_id">Usuario que quiere la visita:</label>
+			
+									
+						<select id="usuario_id" name="usuario_id">
+						    <option th:each="usuario : ${nombresUsuarios}" th:value="${usuario.key}" th:text="${usuario.value}"></option>
+						</select><br>
+        <br>
+        
+        <input type="submit" value="Guardar Visita" class="btn btn-warning">
+       
+    </form>
+            </section>
+        </div>
+        <!-- fin del contenido -->
+	<!-- footer -->
+	<footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>LyleanTozhaa&copy; 2023 - Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  </div>
+	<!-- fin del footer -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!--Icons-->
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<!-- script del modo oscuro -->
+	<script src="/modoOscuro.js"></script>
+	
+
+</body>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+		let form = document.querySelector("#login-form");
+
+		let validationCustom01 = document.querySelector("#validationCustom01");
+		let validationCustom02 = document.querySelector("#validationCustom02");
+		let validationCustom03 = document.querySelector("#validationCustom03");
+
+
+		function validate(event) {
+
+
+			if (validationCustom01.value === "") {
+				document.querySelector("#nombreHelp").innerHTML = "Nombre vacio, complete el campo por favor.";
+				event.preventDefault();
+			}
+
+
+			if (validationCustom03.value === "") {
+				document.querySelector("#emailHelp").innerHTML = "Email vacio, complete el campo por favor.";
+				event.preventDefault();
+			}
+		}
+		form.addEventListener("submit", validate);
+	}
+	);
+</script>
+
+</html>

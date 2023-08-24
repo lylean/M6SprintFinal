@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login con Video Local</title>
+   <link rel="stylesheet" th:href="@{Style.css}">
+</head>
+<body class="a">
+	<div th:if="${registroExitoso}" class="alert alert-success">
+    ¡Registro exitoso! Ahora puedes iniciar sesión.
+</div>
+  <div class="container-login1">
+    <div class="row">
+      <!-- Video local -->
+      <div class="video-container">
+        <!-- Contenedor de la imagen de cobertura -->
+        <div class="cover-image" id="coverImage" onclick="hideCover()"></div>
+
+        <!-- Inserta aquí el enlace al video local -->
+        <video id="videoPlayer" width="565" height="700" controls loop>
+		  <source th:src="@{/videos/BongoCat.mp4}" type="video/mp4">
+		</video>
+
+      </div>
+
+      <!-- Formulario de login -->
+      <div class="login-container">
+		  
+        <h2>Iniciar sesión</h2>
+        
+        <form th:action="@{/Login}" method="post">
+          <div class="form-group">
+            <label for="username">Nombre de usuario</label>
+            <input id="username" type="email" name="username" placeholder="Correo electrónico">
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Contraseña">
+          </div>
+          <button type="submit">Iniciar sesión</button>
+        </form>
+        <div><a th:href="@{/registro}">Registrarse</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function hideCover() {
+      var coverImage = document.getElementById('coverImage');
+      coverImage.style.display = 'none';
+      var videoPlayer = document.getElementById('videoPlayer');
+      videoPlayer.play();
+    }
+  </script>
+</body>
+</html>
